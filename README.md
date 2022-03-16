@@ -27,9 +27,9 @@ I was tasked with developing the Rental section, where theater staff could creat
 
 ### Back End Stories
 - [Generating Models](#generating-database-models)
-- [Creating a Rental](#creating-database-table-display-functionality)
-- [Editing a Rental](#creating-edit-functionality-for-a-specific-table-entry)
-- [Deleting a Rental](#creating-delete-functionality-for-a-specific-table-entry)
+- [Creating a Rental](#creating-database-rental-entry)
+- [Editing a Rental](#editing-database-rental-entry)
+- [Deleting a Rental](#deleting-database-rental-entry)
 - [Filter by Name or Price Greater Than](#creating-functionality-to-display-scraped-data)
 - [Filter by Name or Price Less Than](#create-functionality-to-access-API-and-view-the-response)
 
@@ -46,7 +46,7 @@ Created models for the user and nutritional path
 [MODELS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/forms.py)
 [FORMS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/forms.py)
 
-#### Creating Database Table Display functionality
+#### Creating Database Rental Entry
 
 Created the views and templates required to render the existing user and nutrition path tables in the database
 
@@ -54,7 +54,7 @@ Created the views and templates required to render the existing user and nutriti
 [TEMPLATES](https://github.com/developeralain/DjangoProject/tree/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/templates/Nutrition)
 [FORMS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/forms.py)
 
-#### Creating Edit Functionality for a specific table entry
+#### Editing Database Rental Entry
 
 Created the  views and templates needed to view the full details of a given table entry and edit those details 
  
@@ -62,21 +62,21 @@ Created the  views and templates needed to view the full details of a given tabl
 [TEMPLATES](https://github.com/developeralain/DjangoProject/tree/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/templates/Nutrition)
 [FORMS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/forms.py)
 
-#### Creating Delete Functionality for a specific table entry
+#### Deleting Database Rental Entry
 
 Created the views and templates required to confirm a record deletion, perform the delete on a record, and redirect the user back to the database table display page
 
 [VIEWS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/views.py)
 [TEMPLATES](https://github.com/developeralain/DjangoProject/tree/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/templates/Nutrition)
 
-#### Creating functionality to display scraped data 
+#### Filter by Name or Greater Than Price 
 
 Implemented the BeautifulSoup library in targeting specific HTML elements on a nutritional supplement webpage. Created a view that would strip the markup language from the scraped data and render it via table format on a template. Incorporated a page refresh button to allow for latest data from webpage to be displayed.
 
 [VIEWS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/views.py)
 [TEMPLATES](https://github.com/developeralain/DjangoProject/tree/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/templates/Nutrition)
 
-#### Create functionality to access API and view the response 
+#### Filter by Name or Less Than Price 
 
 Created a view that was able to send an API request, along with required API keys and credentials, to the Nutritionix API. 
 Further, it was able to take the response--which was a messy JSON dictionary--and filter it for only a select few KVPs that I needed. I then made a template to allow users to make queries, and then I connected this template to the same view so that a query would be included in the API request. 
@@ -85,23 +85,17 @@ I made another template that served to unpack the data in a neat tabular format 
 [VIEWS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/views.py)
 [TEMPLATES](https://github.com/developeralain/DjangoProject/tree/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/templates/Nutrition)
 
-#### Enable the saving of API responses to our database 
-
-I created a modified version of the above view that would not only render the response to a user query, but would also automatically save any query, along with the targeted response data, to the database for future reference.
-
-[VIEWS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/views.py)
-[TEMPLATES](https://github.com/developeralain/DjangoProject/tree/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/templates/Nutrition)
 
 ### Front End Stories
-#### Bootstrap4 and Jquery
+#### Bootstrap4 and FontAwesome
 
-Leveraged Bootstrap4 and Jquery to create the application theme and aesthetics. I kept things simple and clean, while leaving special effects and eye-catchers to a minimum. 
+Leveraged Bootstrap4 and FontAwesome to create the application theme and aesthetics. I kept things simple and clean, while leaving special effects and eye-catchers to a minimum. The style and overall theme of the web application was predetermined and decided upon by the theater group client. 
 
 [TEMPLATES](https://github.com/developeralain/DjangoProject/tree/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/templates/Nutrition)
 
 ### Other Skills Learned
 
-Throughout this live project experience I was able to acquire and develop many important non-coding skills. These included such things as:
+Throughout this internship experience I was able to acquire and develop many important non-coding skills. These included such things as:
 
 - Agile and Scrum methodologies of project management
 	- Attended daily standups to discuss what was done, what was to be done, and any roadblocks
@@ -114,6 +108,7 @@ Throughout this live project experience I was able to acquire and develop many i
 	- Committed and pushed completed working branches and generated pull requests
 	- Updated local master branch, checking out branches, merging branches as required 
 	- Addressed pull request rejections and re-submitted working branches along with clear documentation
+	- Addressing merge conflicts and resolving them properly so as not to interfere with anyone else's work
 
 - Research and Problem-Solving Abilities
 	- Broke apart larger problems into smaller components and researched how to implement each component specifically
