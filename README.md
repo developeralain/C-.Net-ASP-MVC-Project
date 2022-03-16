@@ -25,73 +25,78 @@ I was tasked with developing the Rental section, where theater staff could creat
 - Adding a functionality to allow for filtering by price less than target price, and including a button to allow for toggling between search term or price greater than and search term or price less than target price
 - Adding a functionality and a button to reset the filters so that all rental entries are visible on index page
 
-### Back End Stories
+### Stories
 - [Generating Models](#generating-database-models)
 - [Creating a Rental](#creating-database-rental-entry)
 - [Editing a Rental](#editing-database-rental-entry)
+- [Viewing a Rental](#viewing-details-of-rental-entry)
 - [Deleting a Rental](#deleting-database-rental-entry)
-- [Filter by Name or Price Greater Than](#creating-functionality-to-display-scraped-data)
-- [Filter by Name or Price Less Than](#create-functionality-to-access-API-and-view-the-response)
+- [Index with Filter by Name or Price Greater Than](#index-page-with-filter-by-name-or-greater-than-price)
+- [Index with Filter by Name or Price Less Than](#index-page-with-filter-by-name-or-less-than-price)
+- [Front End Design with Bootstrap4 and FontAwesome](#front-end-design)
 
 
 ### Other Sections Navigation
-- [Skip to Front End Stories](#front-end-stories)
 - [Skip to Other Skills Learned](#other-skills-learned)
 
 
 #### Generating Database Models 
 
-Created models for the user and nutritional path
+Created models for the rental being created
 
-[MODELS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/forms.py)
-[FORMS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/forms.py)
+[RENTAL MODEL](https://github.com/developeralain/C-.Net-ASP-MVC-Project/blob/main/rental_model.cs)
+
 
 #### Creating Database Rental Entry
 
-Created the views and templates required to render the existing user and nutrition path tables in the database
+Created the view and action required to add a new entry (record) to the tables in the database
 
-[VIEWS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/views.py)
-[TEMPLATES](https://github.com/developeralain/DjangoProject/tree/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/templates/Nutrition)
-[FORMS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/forms.py)
+[CREATE RENTAL VIEW](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/views.py)
+[RENTAL CONTROLLER](https://github.com/developeralain/C-.Net-ASP-MVC-Project/blob/main/rental_controller.cs)
+
 
 #### Editing Database Rental Entry
 
-Created the  views and templates needed to view the full details of a given table entry and edit those details 
- 
-[VIEWS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/views.py)
-[TEMPLATES](https://github.com/developeralain/DjangoProject/tree/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/templates/Nutrition)
-[FORMS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/forms.py)
+Created the view and action required to edit an entry (record) of the table in the database
+
+[EDIT RENTAL VIEW](https://github.com/developeralain/C-.Net-ASP-MVC-Project/blob/main/rental_edit.cshtml)
+[RENTAL CONTROLLER](https://github.com/developeralain/C-.Net-ASP-MVC-Project/blob/main/rental_controller.cs)
+
+#### Viewing Details of Rental Entry
+
+Created the view and action required to display an entry (record) of the table in the database
+
+[DETAILS RENTAL VIEW](https://github.com/developeralain/C-.Net-ASP-MVC-Project/blob/main/rental_details.cshtml)
+[RENTAL CONTROLLER](https://github.com/developeralain/C-.Net-ASP-MVC-Project/blob/main/rental_controller.cs)
 
 #### Deleting Database Rental Entry
 
-Created the views and templates required to confirm a record deletion, perform the delete on a record, and redirect the user back to the database table display page
+Created the view and action required to delete an entry (record) of the table in the database
 
-[VIEWS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/views.py)
-[TEMPLATES](https://github.com/developeralain/DjangoProject/tree/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/templates/Nutrition)
+[DELETE RENTAL VIEW](https://github.com/developeralain/C-.Net-ASP-MVC-Project/blob/main/rental_delete.cshtml)
+[RENTAL CONTROLLER](https://github.com/developeralain/C-.Net-ASP-MVC-Project/blob/main/rental_controller.cs)
 
-#### Filter by Name or Greater Than Price 
+#### Index Page with Filter by Name or Greater Than Price 
 
-Implemented the BeautifulSoup library in targeting specific HTML elements on a nutritional supplement webpage. Created a view that would strip the markup language from the scraped data and render it via table format on a template. Incorporated a page refresh button to allow for latest data from webpage to be displayed.
+Enabling filtration functionality so that a user can choose to display only rentals that contain certain words or that are priced above a certain price point
 
-[VIEWS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/views.py)
-[TEMPLATES](https://github.com/developeralain/DjangoProject/tree/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/templates/Nutrition)
+[INDEX VIEW](https://github.com/developeralain/C-.Net-ASP-MVC-Project/blob/main/rental_index.cshtml)
+[RENTAL CONTROLLER](https://github.com/developeralain/C-.Net-ASP-MVC-Project/blob/main/rental_controller.cs)
 
-#### Filter by Name or Less Than Price 
+#### Index Page with Filter by Name or Less Than Price 
 
-Created a view that was able to send an API request, along with required API keys and credentials, to the Nutritionix API. 
-Further, it was able to take the response--which was a messy JSON dictionary--and filter it for only a select few KVPs that I needed. I then made a template to allow users to make queries, and then I connected this template to the same view so that a query would be included in the API request. 
-I made another template that served to unpack the data in a neat tabular format for the user to see upon making a search query. 
+Enabling filtration functionality so that a user can choose to display only rentals that contain certain words or that are priced below a certain price point, with a button to toggle between both filtration types
 
-[VIEWS](https://github.com/developeralain/DjangoProject/blob/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/views.py)
-[TEMPLATES](https://github.com/developeralain/DjangoProject/tree/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/templates/Nutrition)
+[INDEX VIEW](https://github.com/developeralain/C-.Net-ASP-MVC-Project/blob/main/rental_index.cshtml)
+[RENTAL CONTROLLER](https://github.com/developeralain/C-.Net-ASP-MVC-Project/blob/main/rental_controller.cs)
 
+#### Front End Design
 
-### Front End Stories
-#### Bootstrap4 and FontAwesome
+Leveraged Bootstrap4 and FontAwesome to create the application theme and aesthetics. I kept things simple and clean, while leaving special effects and eye-catchers to a minimum. The style and overall theme of the web application was predetermined and decided upon by the theater group client. The Index page was the focal design point from my end.
 
-Leveraged Bootstrap4 and FontAwesome to create the application theme and aesthetics. I kept things simple and clean, while leaving special effects and eye-catchers to a minimum. The style and overall theme of the web application was predetermined and decided upon by the theater group client. 
+[CSS Styling](https://github.com/developeralain/C-.Net-ASP-MVC-Project/blob/main/rental_css.css)
+[Index Page](https://github.com/developeralain/C-.Net-ASP-MVC-Project/blob/main/rental_index.cshtml)
 
-[TEMPLATES](https://github.com/developeralain/DjangoProject/tree/main/this_is_my_first_djangoapp/NutritionApp/Nutrition/templates/Nutrition)
 
 ### Other Skills Learned
 
