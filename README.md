@@ -9,29 +9,30 @@ A project undertaken as the final part of my internship with Prosper IT Consulti
 " target="_blank"><img src="http://img.youtube.com/vi/nfdkdTCky7o/0.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
-For the last two weeks of my time at The Tech Academy, I worked alongside my peers in developing a full stack web application using the Django Framework and Python. 
+As part of my internship with Prosper IT Consulting, I worked alongside my peers in developing a full stack web application using the .Net Framework and C#. 
 
-We were each tasked with completing a series of stories to achieve a certain set of functionalities for our app. 
+We were each tasked with completing a series of stories to achieve a certain set of functionalities for an aspect of the overall web application, which is a content management system (CMS) for a theater group. 
 
-In addition to the Django Framework, I made use of Bootstrap4 and JQuery for the front-end of my application. 
+In addition to the .Net Framework, I made use of Bootstrap4 and FontAwesome for the front-end of my application. 
 
-The theme of my application was 'Nutrition' and I chose to create the following features:
+I was tasked with developing the Rental section, where theater staff could create rental options for customers to select, and made the following features:
 
-- Allowing users to create an account and populate user details
-- Allowing users to create Nutritional Paths to follow that are associated with a given account
-- Incorporating CRUD functionality by enabling visualization of all database tables on the front-end, as well as the ability to edit or delete any table entry
-- Utilizing BeautifulSoup to scrape a popular Nutrition website and extract the latest supplement news story summaries and headlines for the end user to see
-- Connecting to the Nutritionix API and allowing users to search for nutritional information pertaining to any food item
-- Allowing users to save API responses to the database for future reference
+- Allowing for the creation of any of 3 rental types on a single create page (dynamic field changes based on desired rental type)
+- Incorporating CRUD functionality by enabling visualization of all database rental items on the Index page, as well as the ability to edit or delete any rental
+- Creating context-specific styling for Index page, such that depending on the rental type, only relevant data would appear on the 'rental card' itself (e.g. only rental equipment would display choking hazards and only rental rooms would display square footage prominently)
+- Adding filtration functionality to the Index page (which houses all rentals in existence as boostrap 'cards') so that only rentals that match search keywords appear
+- Adding filtration by price greater than target price in addition to filtration by a search term, all using the same field/search bar
+- Adding a functionality to allow for filtering by price less than target price, and including a button to allow for toggling between search term or price greater than and search term or price less than target price
+- Adding a functionality and a button to reset the filters so that all rental entries are visible on index page
 
 ### Back End Stories
 - [Generating Models](#generating-database-models)
-- [Displaying Tables](#creating-database-table-display-functionality)
-- [Editing a Table Entry](#creating-edit-functionality-for-a-specific-table-entry)
-- [Deleting a Table Entry](#creating-delete-functionality-for-a-specific-table-entry)
-- [Displaying Scraped Data](#creating-functionality-to-display-scraped-data)
-- [Display API Response](#create-functionality-to-access-API-and-view-the-response)
-- [Save API Response](#enabling-the-saving-of-API-responses-to-our-database)
+- [Creating a Rental](#creating-database-table-display-functionality)
+- [Editing a Rental](#creating-edit-functionality-for-a-specific-table-entry)
+- [Deleting a Rental](#creating-delete-functionality-for-a-specific-table-entry)
+- [Filter by Name or Price Greater Than](#creating-functionality-to-display-scraped-data)
+- [Filter by Name or Price Less Than](#create-functionality-to-access-API-and-view-the-response)
+
 
 ### Other Sections Navigation
 - [Skip to Front End Stories](#front-end-stories)
