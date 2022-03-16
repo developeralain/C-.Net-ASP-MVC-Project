@@ -1,0 +1,176 @@
+@model IEnumerable<TheatreCMS3.Areas.Rent.Models.Rental>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string searchSwitchState = (string)TempData["searchType"];
+    string searchKeepState = (string)ViewBag.searchType;
+}
+@* searchSwitchState toggles between two states via controller action relay:
+    the action relay passes TempData dictionary to Index and then to this view, toggling the second
+    if statement of two below (by default (i.e. when first coming to index page) only the first if statement shows)
+    By toggling the second if statement block, a different toggle button that links to a different action relay
+    appears...
+
+    searchKeepState maintains the appropriate state after a search takes place. It ensures that if a user toggled
+    second if statement block, that after the search completes and page refreshes, the second if statement block
+    remains visible while the first block remains invisible (and vice versa).
+    It achieves this by using ViewBag.searchType within the Index controller so that the searchType value is X
+    after the first if statement block search is executed (this preserves state of only first if block showing),
+    whereas if a user has toggled into the second if statement block in desiring to search for prices less than
+    number entered into search box, the ViewBag.searchType returned along with the search results will contain a
+    value of "Y", ensuring the second if statement block is visible while first block remains invisible to user...
+
+    Essentially, searchSwitchState is mapped to a button that allows user to toggle between price > integer entered
+    and price < integer entered in that only one of the two below if statement blocks will appear based on toggle.
+    searchKeepState maintains the state prior to a search being executed, so that when the page refreshes once
+    model objects are returned from the user query, the same if statement block remains in place until a user
+    elects to toggle the switch button...
+*@
+
+@*This is the default search filter that is seen by the user*@
+@if (searchKeepState != "Y" && searchSwitchState != "Y")
+{
+    using (Html.BeginForm())
+    {
+        <p id="greaterThanCost" style="display: block; margin-top: 25px !important;">
+            Filter by Name or Greater Than Price: @Html.TextBox("searchString")
+            <input type="submit" value="Search" name="" onclick="" />
+        </p>
+        <a href="~/Rent/Rentals/LessThan" class="btn btn-dark">Click to Filter by Name or < Price</a>
+        <a href="~/Rent/Rentals/Index" class="btn btn-danger">Reset Filters (show all entries)</a>
+        @*<div class="">@Html.ActionLink("Filter by Name or Less Than Price", "LessThan", new { @class = "btn btn-danger rental-index--btntrashcan" })</div>*@
+
+    }
+}
+
+@*This is the search filter that can be toggled by the user, in lieu of the default above*@
+@if (searchKeepState == "Y" || searchSwitchState == "Y")
+{
+    using (Html.BeginForm())
+    {
+        <p id="greaterThanCost" style="display: block; margin-top: 25px !important;">
+            Filter by Name or Less Than Price: @Html.TextBox("lessSearchString")
+            <input type="submit" value="Search" name="" onclick="" />
+        </p>
+        <a href="~/Rent/Rentals/GreaterThan" class="btn btn-dark" style="display:inline-block">Click to Filter by Name or > Price</a>
+        <a href="~/Rent/Rentals/Index" class="btn btn-danger">Reset Filters (show all entries)</a>
+        @*<div class="">@Html.ActionLink("Filter by Name or Greater Than Price", "GreaterThan", new { @class = "btn btn-danger" })</div>*@
+
+    }
+}
+
+<br>
+<br>
+
+<p>
+    <a href="~/Rent/Rentals/Create" class="btn rental-create-edit--btn">Create Rental</a>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+
+<h2>Rental</h2>
+<hr class="rental-index--hrforheadings">
+<div class="row mb-3">
+    @foreach (var item in Model)
+    {
+        if (item.SuffocationHazard == null && item.SquareFootage == null)
+        {
+            <div class="col-auto">
+
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="~/Content/images/theater.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="mb-0 rental-index--textblack card-title control-label">@Html.DisplayFor(modelItem => item.RentalName)</h5>
+                        <h6 class="rental-index--textblack card-text">$@Html.DisplayFor(modelItem => item.RentalCost) / day</h6>
+                        <hr />
+                        <a href="~/Rent/Rentals/Edit/@item.RentalId" class="btn btn-dark">Edit<i class="fa fa-pencil-alt ml-1"></i></a>
+
+                        <a href="~/Rent/Rentals/Details/@item.RentalId" class="btn btn-dark">Details<i class="fa fa-info ml-1"></i></a>
+                        <div class="rental-index--float-right">@Html.ActionLink(" ", "Delete", new { id = item.RentalId }, new { @class = "fa fa-trash btn btn-danger rental-index--btntrashcan" })</div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+</div>
+
+<h2>Rental Equipment</h2>
+<hr class="rental-index--hrforheadings">
+<div class="row mb-3">
+    @foreach (var item in Model)
+    {
+        if (item.SuffocationHazard != null || item.ChokingHazard != null || item.PurchasePrice != null)
+        {
+            <div class="col-auto">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="~/Content/images/theater.jpg" alt="Card image cap" />
+                    <div class="card-body">
+                        <h5 class="mb-0 card-title rental-index--textblack">@Html.DisplayFor(modelItem => item.RentalName)</h5>
+                        <h6 class="mb-0 card-text rental-index--textblack">$@Html.DisplayFor(modelItem => item.RentalCost) / day</h6>
+
+                        <div>
+                            @if (item.SuffocationHazard == true)
+                            {
+
+                                <span class="badge badge-pill badge-warning">Suffocation Hazard</span>
+
+                            }
+                            @if (item.ChokingHazard == true)
+                            {
+
+                                <span class="badge badge-pill badge-warning">Choking Hazard</span>
+
+                            }
+                        </div>
+
+                        <hr />
+                        <a href="~/Rent/Rentals/Edit/@item.RentalId" class="btn btn-dark">Edit<i class="fa fa-pencil-alt ml-1"></i></a>
+
+                        <a href="~/Rent/Rentals/Details/@item.RentalId" class="btn btn-dark">Details<i class="fa fa-info ml-1"></i></a>
+                        <div class="rental-index--float-right">@Html.ActionLink(" ", "Delete", new { id = item.RentalId }, new { @class = "fa fa-trash btn btn-danger rental-index--btntrashcan" })</div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<h2>Rental Room</h2>
+<hr class="rental-index--hrforheadings">
+<div class="row mb-3">
+    @foreach (var item in Model)
+    {
+        if (item.SquareFootage != null || item.RoomNumber != null || item.MaxOccupancy != null)
+        {
+            <div class="col-auto">
+
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="~/Content/images/theater.jpg" alt="Card image cap">
+                    <div class="card-body rental-index--button">
+                        <h5 class="mb-0 card-title rental-index--textblack">@Html.DisplayFor(modelItem => item.RentalName)</h5>
+                        <div class="flex-row">
+                            <h6 class="rental-index--float-left rental-index--inlineblock card-text rental-index--textblack">$@Html.DisplayFor(modelItem => item.RentalCost) / day</h6>
+                            <span class="rental-index--badge rental-index--float-right badge badge-secondary mt-2">@Html.DisplayFor(modelItem => item.SquareFootage) ft²</span>
+                        </div>
+
+                        <hr />
+
+
+                        <a href="~/Rent/Rentals/Edit/@item.RentalId" class="btn btn-dark">Edit<i class="fa fa-pencil-alt ml-1"></i></a>
+
+                        <a href="~/Rent/Rentals/Details/@item.RentalId" class="btn btn-dark">Details<i class="fa fa-info ml-1"></i></a>
+                        <div class="rental-index--float-right">@Html.ActionLink(" ", "Delete", new { id = item.RentalId }, new { @class = "fa fa-trash btn btn-danger rental-index--btntrashcan" })</div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+
+
+
